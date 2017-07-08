@@ -1,0 +1,16 @@
+
+
+service:
+  subscriber:
+      url: http://localhost:8083
+server:
+  port: 8082
+spring:
+  application:
+    name: multipart-publisher-app
+  profiles:
+    active:
+      - feign
+logging:
+  level:
+    root: debug
