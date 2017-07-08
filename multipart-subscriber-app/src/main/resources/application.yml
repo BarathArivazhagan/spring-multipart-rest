@@ -1,0 +1,13 @@
+
+
+server:
+  port: 8083
+spring:
+  application:
+    name: multipart-subscriber-app
+  profiles:
+    active:
+      - rest
+logging:
+  level:
+    root: debug
