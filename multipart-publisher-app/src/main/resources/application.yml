@@ -10,7 +10,7 @@ spring:
     name: multipart-publisher-app
   profiles:
     active:
-      - feign
+      - rest
 logging:
   level:
     root: debug

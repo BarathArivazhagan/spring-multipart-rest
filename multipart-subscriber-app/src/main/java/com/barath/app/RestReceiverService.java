@@ -12,7 +12,9 @@ public class RestReceiverService implements GenericSubscriber{
 	@Override
 	public Optional<ResponseEntity<String>> subscribeMultipart(MultipartFile file) {
 		
-		return null;
+		//To be discussed on what can be done with the file received 
+		// to persist the file ??
+		return Optional.empty();
 	}
 
 }

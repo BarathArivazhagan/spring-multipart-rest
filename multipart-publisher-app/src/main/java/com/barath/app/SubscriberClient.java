@@ -22,7 +22,7 @@ public interface SubscriberClient {
 	
 	
 	@PostMapping(value="/receiveDoc",consumes=MediaType.MULTIPART_FORM_DATA_VALUE,produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<String> captureDocument(MultipartFile file);
+	public ResponseEntity<String> uploadDocument(MultipartFile file);
 	
 	@Configuration
     public class MultipartSupportConfig {

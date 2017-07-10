@@ -16,7 +16,7 @@ public class FeignPublisherService implements GenericPublisher{
 	public Optional<ResponseEntity<String>> publishMultipart(MultipartFile file) {
 		
 		
-		ResponseEntity<String> response= client.captureDocument(file);
+		ResponseEntity<String> response= client.uploadDocument(file);
 		if(response !=null && response.getStatusCode().is2xxSuccessful()){
 			return Optional.of(new ResponseEntity<String>(HttpStatus.OK));
 		}else{

@@ -35,10 +35,7 @@ public class AppConfiguration {
 			@Override
 			public boolean hasError(ClientHttpResponse response) throws IOException {
 				
-				if(response !=null && !response.getStatusCode().is2xxSuccessful()){
-					return true;
-				}
-				return false;
+				return response !=null && !response.getStatusCode().is2xxSuccessful() ? true : false;
 			}
 			
 			@Override

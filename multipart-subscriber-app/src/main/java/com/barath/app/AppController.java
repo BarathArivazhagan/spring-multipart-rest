@@ -37,7 +37,7 @@ public class AppController {
 		if(file !=null && LOGGER.isInfoEnabled()){
 			LOGGER.info("File received {}",file.getOriginalFilename());
 			LOGGER.info("File Size {}",file.getSize());
-			//subscriber.subscribeMultipart(file);
+			response=new ResponseEntity<String>("File received", HttpStatus.OK);
 		}else{
 			response=new ResponseEntity<String>("No File received", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -47,7 +47,7 @@ public class AppController {
 	
 	
 	
-	/* @PostMapping(value="/receiveDoc",consumes=MediaType.MULTIPART_FORM_DATA_VALUE,produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	 @PostMapping(value="/uploadMultipart",consumes=MediaType.MULTIPART_FORM_DATA_VALUE,produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<String> receiveDocument(MultipartHttpServletRequest request){
 		
 		ResponseEntity<String> response=null;
@@ -61,7 +61,7 @@ public class AppController {
 //		}
 		
 		return response;
-	} */
+	}
 	
 	@PostMapping(value="/receiveDoc1",produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<String> receiveDocument1(MultiValueMap<String, Object> file){

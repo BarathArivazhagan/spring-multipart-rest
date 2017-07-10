@@ -36,7 +36,7 @@ public class RestPublisherService implements GenericPublisher{
 	@Value("${service.subscriber.url}")
 	private String serviceUrl;
 	
-	private static final String DOCUMENT_UPLOAD_REST_PATH="/recevieDoc";
+	private static final String DOCUMENT_UPLOAD_REST_PATH="/uploadMultipart";
 
 	@Override
 	public Optional<ResponseEntity<String>> publishMultipart(MultipartFile file) {
