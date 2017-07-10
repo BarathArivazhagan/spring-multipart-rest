@@ -4,6 +4,8 @@ import java.util.Map;
 
 import javax.print.attribute.standard.Media;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,9 +19,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+
 @RestController
 public class AppController {
+	
+	private static final Logger LOGGER=LoggerFactory.getLogger(AppController.class);
 	
 	
 	@Autowired
@@ -30,9 +34,9 @@ public class AppController {
 	public ResponseEntity<String> receiveDocument(MultipartFile file){
 		
 		ResponseEntity<String> response=null;	
-		if(file !=null && log.isInfoEnabled()){
-			log.info("File received {}",file.getOriginalFilename());
-			log.info("File Size {}",file.getSize());
+		if(file !=null && LOGGER.isInfoEnabled()){
+			LOGGER.info("File received {}",file.getOriginalFilename());
+			LOGGER.info("File Size {}",file.getSize());
 			//subscriber.subscribeMultipart(file);
 		}else{
 			response=new ResponseEntity<String>("No File received", HttpStatus.INTERNAL_SERVER_ERROR);

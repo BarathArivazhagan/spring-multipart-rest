@@ -1,18 +1,18 @@
 package com.barath.app;
 
-import java.io.IOException;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Optional;
 
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.FileCopyUtils;
@@ -23,10 +23,11 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+
 public class RestPublisherService implements GenericPublisher{
+	
+	private static final Logger LOGGER=LoggerFactory.getLogger(RestPublisherService.class);
 	
 	@Autowired
 	@Qualifier("multipartTemplate")
@@ -51,7 +52,7 @@ public class RestPublisherService implements GenericPublisher{
 			response=invokeRestCall(serviceUrl.concat(DOCUMENT_UPLOAD_REST_PATH), HttpMethod.POST,requestEntity );
 			
 		}catch (Exception e) {
-			log.error("Rest service exception {}",e);
+			LOGGER.error("Rest service exception {}",e);
 		}	
 		
 		return Optional.of(response);
@@ -60,11 +61,11 @@ public class RestPublisherService implements GenericPublisher{
 	
 	protected ResponseEntity<String> invokeRestCall(String url,HttpMethod httpMethod, HttpEntity<?> requestEntity) throws RestClientException, URISyntaxException{
 		
-		if(log.isInfoEnabled()){
-			log.info("Request Url {}   Http method {}  Request Entity {}",url,httpMethod,requestEntity);
+		if(LOGGER.isInfoEnabled()){
+			LOGGER.info("Request Url {}   Http method {}  Request Entity {}",url,httpMethod,requestEntity);
 		}
-		ResponseEntity<String> response=restTemplate.exchange(new URI(url), httpMethod, requestEntity, String.class);
-		return response;
+		return restTemplate.exchange(new URI(url), httpMethod, requestEntity, String.class);
+	
 	}
 
 }
