@@ -6,12 +6,14 @@ import java.util.List;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
-public class AppConfiguration {
+public class AppConfiguration extends WebMvcConfigurerAdapter{
 	
 	@Profile("rest")
 	@Bean(name="multipartTemplate")
@@ -28,5 +30,13 @@ public class AppConfiguration {
 	public RestReceiverService receiverService(){
 		return new RestReceiverService();
 	}
+	
+/*	@Override
+	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+		
+		converters.add(new FormHttpMessageConverter());
+		converters.add(new ByteArrayHttpMessageConverter());
+		super.configureMessageConverters(converters);
+	}*/
 
 }

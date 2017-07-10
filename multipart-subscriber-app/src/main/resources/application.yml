@@ -10,4 +10,7 @@ spring:
       - rest
 logging:
   level:
-    root: info
+    org:
+      springframework:
+          web: debug
+    

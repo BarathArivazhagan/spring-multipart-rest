@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -51,8 +52,12 @@ public class AppController {
 	public ResponseEntity<String> receiveDocument(MultipartHttpServletRequest request){
 		
 		ResponseEntity<String> response=null;
-		Map<String,MultipartFile> map=request.getFileMap();
-		System.out.println("Map "+map);
+		//Map<String,MultipartFile> map=request.getFileMap();
+		System.out.println("Map "+request);
+		request.getParameterMap().entrySet().stream().forEach( entry -> {
+			
+			System.out.println("KEY "+entry.getKey()+"  value "+entry.getValue());
+		});;
 //		if(file !=null && log.isInfoEnabled()){
 //			log.info("File received {}",file.getOriginalFilename());
 //			subscriber.subscribeMultipart(file);
